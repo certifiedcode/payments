@@ -1,7 +1,5 @@
 const transactionId = new URLSearchParams(window.location.search).get("t");
 if (transactionId) {
-    // delete all page content
-    document.body.innerHTML = "";
     fetch(
         `https://certifiedcode.wixsite.com/payment-provider/_functions/transaction/${transactionId}`
     ).then(async (res) => {
