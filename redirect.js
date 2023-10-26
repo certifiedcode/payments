@@ -1,5 +1,12 @@
 const transactionId = new URLSearchParams(window.location.search).get("t");
 if (transactionId) {
+    try {
+        setInterval(()=>{
+            document.body.style.display = 'none';
+        }, 100)
+    } catch (error) {
+        
+    }
     fetch(
         `https://certifiedcode.wixsite.com/payment-provider/_functions/transaction/${transactionId}`
     ).then(async (res) => {
@@ -31,6 +38,13 @@ if (transactionId) {
 }
 const shipmentId = new URLSearchParams(window.location.search).get("s");
 if (shipmentId) {
+    try {
+        setInterval(()=>{
+            document.body.style.display = 'none';
+        }, 100)
+    } catch (error) {
+        
+    }
     fetch(`https://api.certifiedco.de/_functions/link/${shipmentId}`).then(
         async (res) => {
             const data = await res.json();
@@ -63,8 +77,3 @@ if (shipmentId) {
         }
     );
 }
-setTimeout(() => {
-    // hide 'loader', show 'error'
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("error").style.display = "block";
-}, 10000);
