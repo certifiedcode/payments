@@ -1,11 +1,11 @@
 const transactionId = new URLSearchParams(window.location.search).get("t");
 if (transactionId) {
     try {
-        setInterval(()=>{
-            document.body.style.display = 'none';
+        setInterval(() => {
+            if (document?.body) { document.body.style.display = 'none'; }
         }, 100)
     } catch (error) {
-        
+
     }
     fetch(
         `https://certifiedcode.wixsite.com/payment-provider/_functions/transaction/${transactionId}`
@@ -39,11 +39,11 @@ if (transactionId) {
 const shipmentId = new URLSearchParams(window.location.search).get("s");
 if (shipmentId) {
     try {
-        setInterval(()=>{
-            document.body.style.display = 'none';
+        setInterval(() => {
+            if (document?.body) { document.body.style.display = 'none'; }
         }, 100)
     } catch (error) {
-        
+
     }
     fetch(`https://api.certifiedco.de/_functions/link/${shipmentId}`).then(
         async (res) => {
