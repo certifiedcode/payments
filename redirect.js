@@ -71,8 +71,3 @@ if (shipmentId) {
         document.getElementById("PostForm").submit();
     })
 }
-setTimeout(() => {
-    // hide 'loader', show 'error'
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("error").style.display = "block";
-}, 10000)
