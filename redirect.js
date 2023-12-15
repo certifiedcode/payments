@@ -15,7 +15,7 @@ if (transactionId)
         if (response.providerId === 'newebpay') {
             const data = response.data
             const div = document.createElement("div");
-            const form = `<form id='Newebpay' name='Newebpay' method='post' action='https://core.newebpay.com/MPG/mpg_gateway'><input type='text' name='MerchantID' value='${data.MerchantID}'><input type='text' name='TradeInfo' value='${data.TradeInfo}'><input type='text' name='TradeSha' value='${data.TradeSha}'><input type='text' name='Version' value='${data.Version}'></form>`
+            const form = `<form id='Newebpay' name='Newebpay' method='post' action='https://core.newebpay.com/MPG/mpg_gateway' style='display: none;'><input type='text' name='MerchantID' value='${data.MerchantID}'><input type='text' name='TradeInfo' value='${data.TradeInfo}'><input type='text' name='TradeSha' value='${data.TradeSha}'><input type='text' name='Version' value='${data.Version}'></form>`
             div.innerHTML = form
             console.log(form)
             document.body.append(div);
