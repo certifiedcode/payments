@@ -30,6 +30,9 @@ if (transactionId)
         if (response.providerId === 'stripe') {
             window.location.href = response.data
         }
+        if (response.providerId === 'coinbase-commerce') {
+            window.location.href = response.data
+        }
         if (response.providerId === 'square') {
             window.location.href = response.data
         }
