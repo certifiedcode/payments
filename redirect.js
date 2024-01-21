@@ -40,6 +40,18 @@ if (transactionId)
             document.body.innerHTML = response.data;
             document.forms[0].submit();
         }
+        if (response.providerId === 'authorize-net') {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "https://accept.authorize.net/payment/payment");
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "token");
+            hiddenField.setAttribute("value", response.data);
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        }
     })
 const shipmentId = new URLSearchParams(window.location.search).get("s");
 if (shipmentId) {
