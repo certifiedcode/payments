@@ -30,6 +30,9 @@ if (transactionId)
         if (response.providerId === 'stripe') {
             window.location.href = response.data
         }
+        if (response.providerId === 'paypal') {
+            window.location.href = response.data
+        }
         if (response.providerId === 'coinbase-commerce') {
             window.location.href = response.data
         }
@@ -39,6 +42,9 @@ if (transactionId)
         if (response.providerId === 'ccavenue') {
             document.body.innerHTML = response.data;
             document.forms[0].submit();
+        }
+        if (response.providerId === 'zaincash') {
+            window.location.href = response.data.redirectUrl
         }
         if (response.providerId === 'authorize-net') {
             var form = document.createElement("form");
