@@ -1,6 +1,6 @@
 const transactionId = new URLSearchParams(window.location.search).get("t");
 if (transactionId)
-    fetch(`https://certifiedcode.wixsite.com/payment-provider/_functions/transaction/${transactionId}`).then(async (res) => {
+    fetch(`https://wix.certifiedcode.io/payment-provider/_functions/transaction/${transactionId}`).then(async (res) => {
         // check res is text or json
         const response = await res.json()
         if (response.success === false && response.redirectUrl) {
