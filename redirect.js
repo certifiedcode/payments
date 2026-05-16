@@ -1,5 +1,13 @@
-const transactionId = new URLSearchParams(window.location.search).get("t");
-if (transactionId)
+const searchParams = new URLSearchParams(window.location.search);
+const fallbackPathSegment = window.location.pathname.split("/").filter(Boolean)[0];
+const directRedirectUrl = searchParams.get("url") || fallbackPathSegment;
+
+if (directRedirectUrl) {
+    window.location.href = decodeURIComponent(directRedirectUrl);
+}
+
+const transactionId = searchParams.get("t");
+if (!directRedirectUrl && transactionId)
     fetch(`https://wix.certifiedcode.io/payment-provider/_functions/transaction/${transactionId}`).then(async (res) => {
         // check res is text or json
         const response = await res.json()
@@ -59,8 +67,8 @@ if (transactionId)
             form.submit();
         }
     })
-const shipmentId = new URLSearchParams(window.location.search).get("s");
-if (shipmentId) {
+const shipmentId = searchParams.get("s");
+if (!directRedirectUrl && shipmentId) {
     fetch(`https://api.certifiedco.de/_functions/link/${shipmentId}`).then(async (res) => {
         const data = await res.json()
         if (data.provider === "com.certifiedcode.ecpay.shipments.map") {
