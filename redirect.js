@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const pathFallback = window.location.pathname.split("/").filter(Boolean)[0] || null;
 const transactionId = params.get("t") || pathFallback;
 if (transactionId)
-    fetch(`https://wix.certifiedcode.io/payment-provider/_functions/transaction/${transactionId}`).then(async (res) => {
+    fetch(`https://api.certifiedcode.us/v1/payments/transaction/${transactionId}`).then(async (res) => {
         // check res is text or json
         const response = await res.json()
         if (response.success === false && response.redirectUrl) {
