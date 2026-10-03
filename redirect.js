@@ -1,4 +1,40 @@
 const params = new URLSearchParams(window.location.search);
+if (params.has("t") || params.has("s")) {
+    const style = document.createElement("style");
+    style.textContent = `
+        html.redirect-loading::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 2147483646;
+            background: rgba(255, 255, 255, 0.35);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            pointer-events: auto;
+        }
+        html.redirect-loading::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -24px 0 0 -24px;
+            border: 4px solid rgba(0, 0, 0, 0.15);
+            border-top-color: #222;
+            border-radius: 50%;
+            z-index: 2147483647;
+            pointer-events: none;
+            animation: redirect-loading-spin 0.8s linear infinite;
+        }
+        @keyframes redirect-loading-spin {
+            to { transform: rotate(360deg); }
+        }
+    `;
+    (document.head || document.documentElement).appendChild(style);
+    document.documentElement.classList.add("redirect-loading");
+    document.documentElement.setAttribute("aria-busy", "true");
+}
 const pathFallback = window.location.pathname.split("/").filter(Boolean)[0] || null;
 const transactionId = params.get("t") || pathFallback;
 if (transactionId)
